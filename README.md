@@ -6,8 +6,15 @@ Run systemd, etcd, fleet and docker in a container.
 
  * Conair
 
-## Create container
+## Create a CoreOS container on CoreOS
 
 ```
-conair build coreos
+wget http://conair.teemow.com/bin/conair
+sudo ./conair init
+sudo ./conair pull base
+git clone https://github.com/teemow/conair-coreos
+cd conair-coreos
+sudo ../conair build coreos
+sudo ../conair run coreos coreos-01
+machinectl status coreos-01
 ```
