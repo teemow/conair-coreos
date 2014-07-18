@@ -1,0 +1,5 @@
+[Socket]
+ListenStream=/run/fleet.sock
+
+[Install]
+WantedBy=sockets.target
