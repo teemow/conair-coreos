@@ -10,6 +10,7 @@ Run systemd, etcd, fleet and docker in a container.
 
 ```
 wget http://conair.teemow.com/bin/conair
+chmod +x ./conair
 sudo ./conair init
 sudo ./conair pull base
 git clone https://github.com/teemow/conair-coreos
