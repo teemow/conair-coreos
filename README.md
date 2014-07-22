@@ -55,4 +55,7 @@ echo "chmod 600 /home/core/.ssh/authorized_keys" | conair attach coreos-01
 
 # check fleet (you should add your ssh key first)
 fleetctl --tunnel $(conair ip coreos-01) list-machines
+
+# commit the container if it worked
+conair commit coreos-01 coreos-with-ssh
 ```
