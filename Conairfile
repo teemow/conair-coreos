@@ -1,11 +1,22 @@
 FROM base
 MAINTAINER Timo Derstappen <teemow@gmail.com>
 
-PKG sudo docker 
+PKG sudo docker openssh
+
+# add core user
+RUN useradd -m -G wheel -s /bin/bash core
+RUN echo core:coreos | chpasswd
+RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/core
+RUN echo "core ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/core
+
+# setup environment
+ADD config/coreos-setup-environment.service /etc/systemd/system/
+ADD bin/coreos-setup-environment /usr/local/bin/coreos-setup-environment
 
 # install docker custom service for btrfs
 ADD config/docker-custom.service /etc/systemd/system/docker-custom.service
 RUN getent group docker >/dev/null || groupadd -g 142 docker
+RUN usermod -aG docker core
 
 # copy fleet, fleetctl, etcdctl
 ADD bin/fleet0.5.3 /usr/local/bin/
@@ -31,4 +42,4 @@ ADD config/etcd.service /etc/systemd/system
 ADD config/fleet.service /etc/systemd/system
 ADD config/fleet.socket /etc/systemd/system
 
-ENABLE etcd fleet fleet.socket docker-custom
+ENABLE etcd fleet fleet.socket docker-custom coreos-setup-environment sshd systemd-networkd-wait-online
