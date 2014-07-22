@@ -1,11 +1,14 @@
 [Unit]
 Description=etcd
+Requires=coreos-setup-environment.service
+After=coreos-setup-environment.service
 
 [Service]
 User=etcd
 PermissionsStartOnly=true
+EnvironmentFile=/etc/environment
 Environment=ETCD_DATA_DIR=/var/lib/etcd ETCD_NAME=default
-ExecStart=/usr/local/bin/etcd 
+ExecStart=/usr/local/bin/etcd -addr ${COREOS_PUBLIC_IPV4}:4001
 Restart=always
 RestartSec=10s
 
