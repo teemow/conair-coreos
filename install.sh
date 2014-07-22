@@ -14,3 +14,4 @@ git clone https://github.com/teemow/conair-coreos
 cd conair-coreos
 conair build coreos
 conair run coreos coreos-01
+conair ip coreos-01
