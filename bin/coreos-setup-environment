@@ -21,8 +21,8 @@ sed -i -e '/^COREOS_PUBLIC_IPV4=/d' \
 ROUTABLE_IP=$(ip route get 128.193.4.20 | awk '{print $7}')
 if [ -n "$ROUTABLE_IP" ]; then
 	echo COREOS_PUBLIC_IPV4=${ROUTABLE_IP} >> $ENV
+    echo COREOS_PRIVATE_IPV4=${ROUTABLE_IP} >> $ENV
 else
 	echo COREOS_PUBLIC_IPV4=0.0.0.0 >> $ENV
+    echo COREOS_PRIVATE_IPV4=127.0.0.1 >> $ENV
 fi
-
-echo COREOS_PRIVATE_IPV4=127.0.0.1 >> $ENV
