@@ -1,7 +1,7 @@
 FROM base
 MAINTAINER Timo Derstappen <teemow@gmail.com>
 
-PKG sudo docker openssh
+PKG sudo docker openssh nmap
 
 # add core user
 RUN useradd -m -G wheel -s /bin/bash core
