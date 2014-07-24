@@ -8,7 +8,7 @@ User=etcd
 PermissionsStartOnly=true
 EnvironmentFile=/etc/environment
 Environment=ETCD_DATA_DIR=/var/lib/etcd ETCD_NAME=default
-ExecStart=/usr/local/bin/etcd -addr ${COREOS_PUBLIC_IPV4}:4001
+ExecStart=/usr/local/bin/etcd -addr ${COREOS_PUBLIC_IPV4}:4001 -peer-addr ${COREOS_PUBLIC_IPV4}:7001 -name %H
 Restart=always
 RestartSec=10s
 
