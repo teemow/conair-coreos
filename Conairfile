@@ -19,16 +19,10 @@ RUN getent group docker >/dev/null || groupadd -g 142 docker
 RUN usermod -aG docker core
 
 # copy fleet, fleetctl, etcdctl
-ADD bin/fleet0.5.3 /usr/local/bin/
-ADD bin/fleetctl0.5.3 /usr/local/bin/
-ADD bin/etcdctl0.4.5 /usr/local/bin/
-ADD bin/etcd0.4.5 /usr/local/bin/
-
-# link versions
-RUN ln -s /usr/local/bin/fleet0.5.3 /usr/local/bin/fleet
-RUN ln -s /usr/local/bin/fleetctl0.5.3 /usr/local/bin/fleetctl
-RUN ln -s /usr/local/bin/etcdctl0.4.5 /usr/local/bin/etcdctl
-RUN ln -s /usr/local/bin/etcd0.4.5 /usr/local/bin/etcd
+ADD bin/fleet0.5.3 /usr/local/bin/fleet
+ADD bin/fleetctl0.5.3 /usr/local/bin/fleetctl
+ADD bin/etcdctl0.4.5 /usr/local/bin/etcdctl
+ADD bin/etcd0.4.5+git /usr/local/bin/etcd
 
 # etcd
 RUN useradd -m -s /usr/bin/nologin -d /var/lib/etcd etcd
