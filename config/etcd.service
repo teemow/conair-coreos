@@ -8,9 +8,9 @@ User=etcd
 PermissionsStartOnly=true
 EnvironmentFile=/etc/environment
 Environment=ETCD_DATA_DIR=/var/lib/etcd
-ExecStart=/usr/local/bin/etcd -addr ${COREOS_PUBLIC_IPV4}:4001 -peer-addr ${COREOS_PUBLIC_IPV4}:7001 -name %m
+ExecStart=/usr/bin/etcd -addr ${COREOS_PUBLIC_IPV4}:4001 -peer-addr ${COREOS_PUBLIC_IPV4}:7001 -name %m
 Restart=always
-RestartSec=10s
+RestartSec=1s
 
 [Install]
 WantedBy=multi-user.target

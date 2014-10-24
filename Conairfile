@@ -9,15 +9,9 @@ RUN echo "core ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/core
 
 # setup environment
 ADD config/coreos-setup-environment.service /etc/systemd/system/
-ADD bin/coreos-setup-environment /usr/local/bin/coreos-setup-environment
+ADD bin/coreos-setup-environment /usr/bin/coreos-setup-environment
 
 RUN usermod -aG docker core
-
-# copy fleet, fleetctl, etcdctl
-ADD bin/fleet0.6.2 /usr/local/bin/fleet
-ADD bin/fleetctl0.6.2 /usr/local/bin/fleetctl
-ADD bin/etcdctl0.4.6 /usr/local/bin/etcdctl
-ADD bin/etcd0.4.6 /usr/local/bin/etcd
 
 # etcd
 RUN useradd -m -s /usr/bin/nologin -d /var/lib/etcd etcd
@@ -32,3 +26,9 @@ ADD config/fleet.service /etc/systemd/system
 ADD config/fleet.socket /etc/systemd/system
 
 ENABLE etcd fleet fleet.socket coreos-setup-environment 
+
+# copy fleet, fleetctl, etcdctl
+ADD bin/fleet0.8.3 /usr/bin/fleet
+ADD bin/fleetctl0.8.3 /usr/bin/fleetctl
+ADD bin/etcdctl0.4.6 /usr/bin/etcdctl
+ADD bin/etcd0.4.6 /usr/bin/etcd

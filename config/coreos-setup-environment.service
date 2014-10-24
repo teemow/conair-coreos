@@ -6,7 +6,7 @@ After=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/local/bin/coreos-setup-environment /etc/environment
+ExecStart=/usr/bin/coreos-setup-environment /etc/environment
 
 [Install]
 WantedBy=multi-user.target

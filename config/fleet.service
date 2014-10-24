@@ -4,7 +4,7 @@ Wants=etcd.service
 After=etcd.service
 
 [Service]
-ExecStart=/usr/local/bin/fleet -config /etc/fleet/fleet.conf
+ExecStart=/usr/bin/fleet -config /etc/fleet/fleet.conf
 
 [Install]
 WantedBy=multi-user.target
