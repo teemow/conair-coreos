@@ -28,7 +28,7 @@ ADD config/fleet.socket /etc/systemd/system
 ENABLE etcd fleet fleet.socket coreos-setup-environment 
 
 # copy fleet, fleetctl, etcdctl
-ADD bin/fleet0.8.3 /usr/bin/fleet
-ADD bin/fleetctl0.8.3 /usr/bin/fleetctl
+ADD bin/fleetd0.9.0 /usr/bin/fleetd
+ADD bin/fleetctl0.9.0 /usr/bin/fleetctl
 ADD bin/etcdctl0.4.6 /usr/bin/etcdctl
 ADD bin/etcd0.4.6 /usr/bin/etcd
