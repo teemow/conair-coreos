@@ -4,6 +4,7 @@ Wants=etcd.service
 After=etcd.service
 
 [Service]
+Environment="FLEET_ETCD_REQUEST_TIMEOUT=5" "FLEET_VERBOSITY=0"
 ExecStart=/usr/bin/fleetd -config /etc/fleet/fleet.conf
 
 [Install]

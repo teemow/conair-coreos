@@ -4,6 +4,8 @@ Requires=coreos-setup-environment.service
 After=coreos-setup-environment.service
 
 [Service]
+Environment="ETCD_PEER_ELECTION_TIMEOUT=5000"
+Environment="ETCD_PEER_HEARTBEAT_INTERVAL=1000"
 User=etcd
 PermissionsStartOnly=true
 EnvironmentFile=/etc/environment
