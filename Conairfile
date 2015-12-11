@@ -30,10 +30,10 @@ ADD config/rkt-metadata.socket /etc/systemd/system
 ENABLE etcd fleet fleet.socket coreos-setup-environment rkt-metadata rkt-metadata.socket
 
 # copy fleet, fleetctl, etcdctl
-ADD bin/fleetd0.9.2 /usr/bin/fleetd
-ADD bin/fleetctl0.9.2 /usr/bin/fleetctl
-ADD bin/etcdctl0.4.9 /usr/bin/etcdctl
-ADD bin/etcd0.4.9 /usr/bin/etcd
+ADD bin/fleetd0.11.3-gs-2 /usr/bin/fleetd
+ADD bin/fleetctl0.11.3-gs-2 /usr/bin/fleetctl
+ADD bin/etcdctl2.2.2 /usr/bin/etcdctl
+ADD bin/etcd2.2.2 /usr/bin/etcd
 ADD bin/rkt /usr/bin/rkt
 ADD bin/stage1.aci /usr/bin/stage1.aci
 
