@@ -14,26 +14,26 @@ ADD bin/coreos-setup-environment /usr/bin/coreos-setup-environment
 RUN usermod -aG docker core
 
 # etcd
-RUN useradd -m -s /usr/bin/nologin -d /var/lib/etcd etcd
+RUN useradd -m -s /usr/bin/nologin -d /var/lib/etcd2 etcd
 
 # fleet.config
 RUN mkdir /etc/fleet
 ADD config/fleet.conf /etc/fleet/fleet.conf
 
 # units kopieren
-ADD config/etcd.service /etc/systemd/system
+ADD config/etcd2.service /etc/systemd/system
 ADD config/fleet.service /etc/systemd/system
 ADD config/fleet.socket /etc/systemd/system
 ADD config/rkt-metadata.service /etc/systemd/system
 ADD config/rkt-metadata.socket /etc/systemd/system
 
-ENABLE etcd fleet fleet.socket coreos-setup-environment rkt-metadata rkt-metadata.socket
+ENABLE etcd2 fleet fleet.socket coreos-setup-environment rkt-metadata rkt-metadata.socket
 
 # copy fleet, fleetctl, etcdctl
 ADD bin/fleetd0.11.3-gs-2 /usr/bin/fleetd
 ADD bin/fleetctl0.11.3-gs-2 /usr/bin/fleetctl
 ADD bin/etcdctl2.2.2-gs-1 /usr/bin/etcdctl
-ADD bin/etcd2.2.2-gs-1 /usr/bin/etcd
+ADD bin/etcd2.2.2-gs-1 /usr/bin/etcd2
 ADD bin/rkt /usr/bin/rkt
 ADD bin/stage1.aci /usr/bin/stage1.aci
 

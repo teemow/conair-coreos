@@ -8,11 +8,11 @@ EnvironmentFile=/etc/environment
 Environment="ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001"
 Environment="ETCD_ELECTION_TIMEOUT=5000"
 Environment="ETCD_HEARTBEAT_INTERVAL=1000"
-Environment="ETCD_DATA_DIR=/var/lib/etcd"
+Environment="ETCD_DATA_DIR=/var/lib/etcd2"
 Environment="ETCD_NAME=%m"
 
-#User=etcd
-ExecStart=/usr/bin/etcd --advertise-client-urls=http://${COREOS_PUBLIC_IPV4}:2379 \
+User=etcd
+ExecStart=/usr/bin/etcd2 --advertise-client-urls=http://${COREOS_PUBLIC_IPV4}:2379 \
 	--initial-advertise-peer-urls=http://${COREOS_PUBLIC_IPV4}:2380 \
 	--listen-peer-urls=http://${COREOS_PUBLIC_IPV4}:2380
 Restart=always

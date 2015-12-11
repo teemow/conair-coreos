@@ -1,7 +1,7 @@
 FROM coreos
 MAINTAINER Timo Derstappen <teemow@gmail.com>
 
-RUN mkdir /etc/systemd/system/etcd.service.d/
-ADD config/discovery.conf /etc/systemd/system/etcd.service.d/10-discovery.conf
-RUN_NOCACHE sed -i "s/\%\%ETCD_DISCOVERY\%\%/$(curl https://discovery.etcd.io/new  | sed -e 's/[\/&]/\\&/g')/" /etc/systemd/system/etcd.service.d/10-discovery.conf 
+RUN mkdir /etc/systemd/system/etcd2.service.d/
+ADD config/discovery.conf /etc/systemd/system/etcd2.service.d/10-discovery.conf
+RUN_NOCACHE sed -i "s/\%\%ETCD_DISCOVERY\%\%/$(curl https://discovery.etcd.io/new  | sed -e 's/[\/&]/\\&/g')/" /etc/systemd/system/etcd2.service.d/10-discovery.conf 
 
