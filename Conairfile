@@ -32,8 +32,8 @@ ENABLE etcd fleet fleet.socket coreos-setup-environment rkt-metadata rkt-metadat
 # copy fleet, fleetctl, etcdctl
 ADD bin/fleetd0.11.3-gs-2 /usr/bin/fleetd
 ADD bin/fleetctl0.11.3-gs-2 /usr/bin/fleetctl
-ADD bin/etcdctl2.2.2 /usr/bin/etcdctl
-ADD bin/etcd2.2.2 /usr/bin/etcd
+ADD bin/etcdctl2.2.2-gs-1 /usr/bin/etcdctl
+ADD bin/etcd2.2.2-gs-1 /usr/bin/etcd
 ADD bin/rkt /usr/bin/rkt
 ADD bin/stage1.aci /usr/bin/stage1.aci
 
