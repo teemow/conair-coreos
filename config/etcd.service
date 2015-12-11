@@ -4,15 +4,20 @@ Requires=coreos-setup-environment.service
 After=coreos-setup-environment.service
 
 [Service]
-Environment="ETCD_PEER_ELECTION_TIMEOUT=5000"
-Environment="ETCD_PEER_HEARTBEAT_INTERVAL=1000"
-User=etcd
-PermissionsStartOnly=true
 EnvironmentFile=/etc/environment
-Environment=ETCD_DATA_DIR=/var/lib/etcd
-ExecStart=/usr/bin/etcd -addr=${COREOS_PUBLIC_IPV4}:4001 -peer-addr=${COREOS_PUBLIC_IPV4}:7001 -name=%m
+Environment="ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001"
+Environment="ETCD_ELECTION_TIMEOUT=5000"
+Environment="ETCD_HEARTBEAT_INTERVAL=1000"
+Environment="ETCD_DATA_DIR=/var/lib/etcd"
+Environment="ETCD_NAME=%m"
+
+#User=etcd
+ExecStart=/usr/bin/etcd --advertise-client-urls=http://${COREOS_PUBLIC_IPV4}:2379 \
+	--initial-advertise-peer-urls=http://${COREOS_PUBLIC_IPV4}:2380 \
+	--listen-peer-urls=http://${COREOS_PUBLIC_IPV4}:2380
 Restart=always
 RestartSec=1s
+LimitNOFILE=40000
 
 [Install]
 WantedBy=multi-user.target
